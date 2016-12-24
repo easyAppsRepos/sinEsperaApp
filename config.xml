@@ -44,17 +44,18 @@
 
    <gap:plugin name="cordova-plugin-whitelist" version="1.3.1" source="npm" />
   <gap:plugin name="cordova-plugin-network-information" source="npm" version="1.0.1" />
+    <gap:plugin name="cordova-plugin-webp" source="npm" version="2.2.0" />
 
 
 <access origin="*" />
 <allow-intent href="*" />
  <allow-navigation href="*" />
-
+   <!--
 
  <platform name="ios">
   <hook type="before_build" src="hooks/ios_ats.sh" />
 </platform>
-    <!--
+ 
     <icon gap:platform="ios" height="40" src="res/icon/ios/icon-40.jpg" width="40" />
     <icon gap:platform="ios" height="80" src="res/icon/ios/icon-40@2x.jpg" width="80" />
     <icon gap:platform="ios" height="50" src="res/icon/ios/icon-50.jpg" width="50" />
