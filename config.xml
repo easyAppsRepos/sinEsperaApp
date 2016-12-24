@@ -49,6 +49,11 @@
 <access origin="*" />
 <allow-intent href="*" />
  <allow-navigation href="*" />
+
+
+ <platform name="ios">
+  <hook type="before_build" src="hooks/ios_ats.sh" />
+</platform>
     <!--
     <icon gap:platform="ios" height="40" src="res/icon/ios/icon-40.jpg" width="40" />
     <icon gap:platform="ios" height="80" src="res/icon/ios/icon-40@2x.jpg" width="80" />
