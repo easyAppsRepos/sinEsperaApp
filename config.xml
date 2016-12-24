@@ -48,6 +48,7 @@
 
 <access origin="*" />
 <allow-intent href="*" />
+ <allow-navigation href="*" />
     <!--
     <icon gap:platform="ios" height="40" src="res/icon/ios/icon-40.jpg" width="40" />
     <icon gap:platform="ios" height="80" src="res/icon/ios/icon-40@2x.jpg" width="80" />
