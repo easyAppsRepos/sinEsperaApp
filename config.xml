@@ -39,8 +39,6 @@
 
 
 
-<gap:plugin name="cordova-plugin-inappbrowser" version="" source="npm" />
-
 
 <gap:plugin name="cordova-plugin-device" version="" source="npm" />
 
