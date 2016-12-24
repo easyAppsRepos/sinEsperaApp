@@ -1,0 +1,135 @@
+<ion-view view-title="Profile">
+
+<style type="text/css">
+    
+
+
+</style>
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+        <div  style='    text-align: center;
+    padding: 30px;'  class=" " >
+
+        <img src='img/logo.png'>
+ <!--            <div class="content">
+                <div class="avatar" style="background-image: url('img/daenerys.jpg');"></div>
+                <h3><a class="light">Daenerys Targaryen</a></h3>
+                <h4>dragon_mommy</h4>
+            </div> -->
+        </div>
+        <div class="tabs tabs-assertive tabs-icon-top static">
+            <a  class="tab-item" ng-click="cambiar(1)" ng-class="{'active':path == true}" style="    max-width: 50%;    font-size: 15px;
+    line-height: 3;">
+                 TURNOS ACTIVOS
+            </a>
+            <a  class="tab-item" ng-click="cambiar(0)" ng-class="{'active':path == false}"  style="    max-width: 50%;    font-size: 15px;
+    line-height: 3;">
+                HISTORIAL
+            </a>
+
+        </div>
+     
+        <div ng-show='path == true' class="list animate-fade-slide-in-right">
+
+
+
+
+ <div ng-repeat="t in turnos" class="turnosClass" style="
+    width: 90%;
+    margin-left: 5%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    margin-top: 20px;
+">
+
+             <div style="
+    text-align: center;
+    width: 85px;
+    display: inline-block;
+    background-color: #666;
+    vertical-align: middle;
+">
+                <img src="{{t.business_logo}}" style="
+    height: 65px;
+    margin-top: 7px;
+">
+                <div style="
+    background-color: #444;
+    color: white;
+">
+                    <i class="icon ion-ios-people" style="
+    font-size: 20px;    vertical-align: middle;
+"></i><a style="font-size: 15px;margin-left: 5px;display: inline-block;color: white;">{{t.remaining.persons}}</a>
+                </div>
+             </div>
+             <div style="
+    display: inline-block;
+vertical-align: middle;
+    font-size: 17px;
+">
+               <div style="padding: 5px;"> <i style="color:#1e88e5" class="icon ion-home"></i><a style="color: #444;margin-left: 10px; display: inline-block" class="ng-binding">{{t.business_name}}</a>
+               </div>
+               <div  style="padding: 5px;">  <i style="color:#1e88e5" class="icon ion-ios-pricetags"></i><a style="color: #444;margin-left: 10px;display: inline-block" class="ng-binding">DFF</a>
+               </div>
+                <div  style="padding: 5px;">
+                <i style="color:#1e88e5" class="icon ion-ios-clock-outline"></i><a style="margin-left: 10px;display: inline-block;color: #444;" class="ng-binding">{{calcularTiempo(t.remaining.time)}}</a>
+                </div>
+             </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+                <div ng-show='path == false' class="list animate-fade-slide-in-right">
+
+                        <div ng-repeat="t in historialT" class="turnosClass" style="
+                        width: 90%;
+                        margin-left: 5%;
+                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                        border-radius: 5px;
+                        margin-top: 20px;
+                        ">
+
+                        <div style="
+                        text-align: center;
+                        width: 85px;
+                        display: inline-block;
+                        background-color: #666;
+                        vertical-align: middle;
+                        ">
+                        <img src="{{t.business_logo}}" style="
+                        height: 65px;
+                        margin-top: 7px;
+                        ">
+    
+                        </div>
+                        <div style="
+                        display: inline-block;
+                        vertical-align: middle;
+                        font-size: 17px;
+                        ">
+                        <div style="padding: 5px;"> <i style="color:#1e88e5" class="icon ion-home"></i><a style="color: #444;margin-left: 10px; display: inline-block" class="ng-binding">{{t.business_name}}</a>
+                        </div>
+          
+                        <div  style="padding: 5px;">
+                        <i style="color:#1e88e5" class="icon ion-ios-clock-outline"></i><a style="margin-left: 10px;display: inline-block;color: #444;" class="ng-binding">{{t.date}}</a>
+                        </div>
+                        </div>
+
+                        </div>
+
+
+                 </div>
+
+
+    </ion-content>
+</ion-view>
