@@ -316,7 +316,7 @@
   for (var i = 0; i < len; i++) {
 
           //console.log(turnos[i]);
-          if(turnos[i].remaining.time<50 ){
+          if(turnos[i].remaining.time<1 ){
               console.log(turnos[i].remaining.time);
               for (var k = 0; k < turnosGuardados.length; k++) {
 
