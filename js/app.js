@@ -61,7 +61,7 @@ angular.module('starter', ['ionic',  'starter.controllers', 'ionic-material', 'i
             'menuContent': {
                 templateUrl: 'templates/friends.html',
                 controller: 'FriendsCtrl'
-            },
+            }/*,
             'fabContent': {
                 template: '',
                 controller: function ($timeout) {
@@ -69,7 +69,7 @@ angular.module('starter', ['ionic',  'starter.controllers', 'ionic-material', 'i
                         document.getElementById('fab-friends').classList.toggle('on');
                     }, 900);
                 }
-            }
+            }*/
         }
     })
 

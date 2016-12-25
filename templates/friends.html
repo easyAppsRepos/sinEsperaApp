@@ -1,50 +1,71 @@
-<ion-view view-title="Friends">
-    <ion-content ng-class="{expanded:isExpanded}">
+<ion-view view-title="Configuracion">
 
 
-    <ion-nav-bar class="bar-assertive-900" ng-class="{expanded: isExpanded, 'has-header-fab-left': hasHeaderFabLeft, 'has-header-fab-right': hasHeaderFabRight}" align-title="left">
+
+
+
+        <ion-nav-bar class="bar-assertive" ng-class="{expanded: isExpanded, 'has-header-fab-left': hasHeaderFabLeft, 'has-header-fab-right': hasHeaderFabRight}" align-title="left">
+
             <ion-nav-back-button class="no-text">
+
+
             </ion-nav-back-button>
             <ion-nav-buttons side="right">
                 <button class="button button-icon button-clear ion-android-more-vertical" menu-toggle="right">
                 </button>
+
+        
             </ion-nav-buttons>
         </ion-nav-bar>
 
-        
-        <div class="content has-header">
-            <div class="list animate-fade-slide-in-right">
-                <a href="#/app/profile" class="item item-avatar item-icon-right">
-                    <img src="img/jon-snow.jpg">
-                    <h2>Jon Snow</h2>
-                    <p>Da illest illegitimate</p>
-                    <i class="icon ion-chatbubble muted"></i>
-                </a>
-                <a href="#/app/profile" class="item item-avatar item-icon-right">
-                    <img src="img/daenerys.jpg">
-                    <h2>Daenerys Targaryen</h2>
-                    <p>Dragon mommy</p>
-                    <i class="icon ion-chatbubble muted"></i>
-                </a>
-                <a href="#/app/profile" class="item item-avatar item-icon-right">
-                    <img src="img/arya.jpg">
-                    <h2>Arya Stark</h2>
-                    <p>Is Chuck Norris' fear</p>
-                    <i class="icon ion-chatbubble muted"></i>
-                </a>
-                <a href="#/app/profile" class="item item-avatar item-icon-right">
-                    <img src="img/sansa.jpg">
-                    <h2>Sansa Stark</h2>
-                    <p>&amp; Joffrey <strike>sitting</strike> sat in a tree</p>
-                    <i class="icon ion-chatbubble muted"></i>
-                </a>
-                <a href="#/app/profile" class="item item-avatar item-icon-right">
-                    <img src="img/tyrion.jpg">
-                    <h2>Tyrion Lannister</h2>
-                    <p>B.A.M.F. imp</p>
-                    <i class="icon ion-chatbubble muted"></i>
-                </a>
-            </div>
-        </div>
+
+    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
+
+
+
+
+<ul class="list">
+
+  <li style="margin-left: 16px;
+margin-top: 30px;" class=" item-toggle">
+    <span style="color: #444; font-size:16px"> Activar Notificaciones</span><br><span style="font-size:13px;color: #444;margin-top: 5px "> Mostrar notificaciones en la parte superior de la pantalla</span>
+     <label style="margin-top:30px" class="toggle toggle-assertive">
+       <input type="checkbox">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+  </li>
+
+    <label style="margin-top:40px" class=" item-input item-select">
+    <div style="width: 70%; font-size:16px;color: #444; " class="input-label">
+      Notificar cuando falten
+    </div>
+    <select>
+      <option selected>5 personas</option>
+      <option >5 personas</option>
+      <option >6 personas</option>
+      <option >7 personas</option>
+      <option >8 personas</option>
+      <option >9 personas</option>
+      <option >10 personas</option>
+      <option >11 personas</option>
+      <option >12 personas</option>
+      <option >13 personas</option>
+      <option >14 personas</option>
+      <option >15 personas</option>
+
+
+    </select>
+  </label>
+
+
+
+</ul>
+
+
+
+
+
     </ion-content>
 </ion-view>
