@@ -288,11 +288,29 @@
       //$scope.$parent.setHeaderFab(false);
 
 
+
+
           $scope.$on('$ionicView.beforeEnter', function(){
           $scope.getTurnos();
       });
 
         
+ $scope.getTokenS = function(){    
+
+  apiC.getToken().then(function(response){
+  var tok=response.data.response.token;
+  console.log(tok);
+   $window.localStorage['sinEsperaToken']=tok;
+
+  });
+
+  }
+
+if(localStorage.getItem('sinEsperaToken')==null){
+
+  $scope.getTokenS();
+}
+
 
           $scope.turnos=[];
     
@@ -385,16 +403,9 @@
       //console.log('ádadadadadasd22233');
   }, 60000);
 
-  $scope.getTokenS = function(){    
 
-  apiC.getToken().then(function(response){
-  var tok=response.data.response.token;
-  console.log(tok);
-   $window.localStorage['sinEsperaToken']=tok;
 
-  });
-
-  }
+ 
 
 
   $scope.consultaTurno=function(){
