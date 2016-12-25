@@ -361,7 +361,7 @@
 
       console.log(JSON.parse($window.localStorage.getItem("turnos")));
 
-      if(response==500){
+      if(response==500 || response.error){
           console.log('no internet');
       }
           else{
