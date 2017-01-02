@@ -373,6 +373,12 @@ if(localStorage.getItem('sinEsperaToken')==null){
   };
 
 
+      $scope.actualizarOff = function(){
+
+
+
+      };
+
   $scope.getTurnos= function(){
 
   apiC.consultaTiempos().then(function(response){
@@ -381,15 +387,52 @@ if(localStorage.getItem('sinEsperaToken')==null){
 
       if(response==500 || response.error){
           console.log('no internet');
+           $scope.turnos = JSON.parse($window.localStorage.getItem("backupTurnos"));
+
+           var historialT=JSON.parse($window.localStorage.getItem("backupTurnos"));
+
+        //   $scope.actualizarOff();
+            var dd = new Date();
+            var nn = dd.getTime();
+       var ultimoUpdate = (((nn-$window.localStorage.getItem("ultimoUpdate")) / 1000)  / 60).toFixed(0);
+        console.log(ultimoUpdate);
+
+
+       for(var i = 0; i < historialT.length; i++){
+        var tiempoPromedio =(historialT[i].remaining.time/historialT[i].remaining.persons).toFixed(0);
+        console.log(tiempoPromedio);
+            if(ultimoUpdate>tiempoPromedio){
+ console.log('enif');
+              historialT[i].remaining.time= historialT[i].remaining.time-tiempoPromedio;
+              historialT[i].remaining.persons=historialT[i].remaining.persons-1;
+             var sd = new Date();
+             var sn = sd.getTime();
+             $window.localStorage.setItem("ultimoUpdate", sn);
+            
+
+            } 
+
+           
+       }
+
+        $window.localStorage.setItem("backupTurnos", JSON.stringify(historialT));
+
       }
           else{
 
-            
+                  console.log(response);
+                    $window.localStorage.setItem("backupTurnos", JSON.stringify(response));
+
               $scope.noTurnos=false;
                         $scope.turnos=response;
                         $scope.verificarOld($scope.turnos);
                         $scope.historialT = JSON.parse($window.localStorage.getItem("turnosHistorial"));
             console.log(    $scope.historialT);
+
+            var d = new Date();
+            var n = d.getTime();
+
+              $window.localStorage.setItem("ultimoUpdate", n);
             
 
           }
