@@ -30,7 +30,7 @@
 margin-top: 30px;" class=" item-toggle">
     <span style="color: #444; font-size:16px"> Activar Notificaciones</span><br><span style="font-size:13px;color: #444;margin-top: 5px "> Mostrar notificaciones en la parte superior de la pantalla</span>
      <label style="margin-top:30px" class="toggle toggle-assertive">
-       <input type="checkbox">
+       <input type="checkbox" >
        <div class="track">
          <div class="handle"></div>
        </div>
@@ -41,9 +41,9 @@ margin-top: 30px;" class=" item-toggle">
     <div style="width: 70%; font-size:16px;color: #444; " class="input-label">
       Notificar cuando falten
     </div>
-    <select>
+    <select ng-model='personas' ng-change='cambiarPersonas(personas)' >
       <option selected>5 personas</option>
-      <option >5 personas</option>
+
       <option >6 personas</option>
       <option >7 personas</option>
       <option >8 personas</option>

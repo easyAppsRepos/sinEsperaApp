@@ -95,12 +95,19 @@
       ionicMaterialInk.displayEffect();
   })
 
-  .controller('FriendsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+  .controller('FriendsCtrl', function($scope, $stateParams, $window, $timeout, ionicMaterialInk, ionicMaterialMotion) {
  //    $scope.$parent.showHeader();
       $scope.$parent.clearFabs();
       $scope.isExpanded = true;
       $scope.$parent.setExpanded(true);
       $scope.$parent.setHeaderFab(false);
+
+
+      $scope.cambiarPersonas = function(personas){
+
+      $window.localStorage.setItem("personas", personas);
+        console.log(personas)
+      }
 
 
 
@@ -373,9 +380,34 @@ if(localStorage.getItem('sinEsperaToken')==null){
   };
 
 
-      $scope.actualizarOff = function(){
+      $scope.verificarNotis = function(tns){ 
+
+        var alerta =1;
+       
+
+        if(alerta == 1){
+      var personas = $window.localStorage.getItem("personas");
+
+          
+        for (var i = 0; i < tns.length; i++) {
+
+            if(tns[i].remaining.persons<personas){
+
+                  cordova.plugins.notification.local.schedule({
+                  id: 1,
+                  text: "Quedan "+tns[i].remaining.persons+" personas en la cola de "+tns[i].business_name,
+                  // sound: isAndroid ? 'file://sound.mp3' : 'file://beep.caf',
+                  // data: { secret:key }
+                  });
+
+            }
+
+        }
+
+ 
 
 
+      }
 
       };
 
@@ -433,7 +465,7 @@ if(localStorage.getItem('sinEsperaToken')==null){
             var n = d.getTime();
 
               $window.localStorage.setItem("ultimoUpdate", n);
-            
+            $scope.verificarNotis($scope.turnos);
 
           }
   });
