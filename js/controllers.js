@@ -381,14 +381,14 @@ if(localStorage.getItem('sinEsperaToken')==null){
 
 
       $scope.verificarNotis = function(tns){ 
-
+console.log('en verificarNotis')
         var alerta =1;
        
 
         if(alerta == 1){
       var personas = $window.localStorage.getItem("personas");
 
-          
+          console.log(personas);
         for (var i = 0; i < tns.length; i++) {
 
             if(tns[i].remaining.persons<personas){
