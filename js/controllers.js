@@ -402,6 +402,8 @@ console.log('en verificarNotis');
        var alerta2=$window.localStorage.getItem("alerta");
  var personas = $window.localStorage.getItem("personas");
 
+ if(personas == null) { personas = 5;} 
+
   console.log(alerta2);
  console.log(personas);
         if(true){
