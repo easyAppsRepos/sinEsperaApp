@@ -83,9 +83,9 @@ angular.module('starter', ['ionic',  'starter.controllers', 'ionic-material', 'i
             'fabContent': {
                 template: '',
                 controller: function ($timeout) {
-                    $timeout(function () {
+               /*     $timeout(function () {
                         document.getElementById('fab-gallery').classList.toggle('on');
-                    }, 600);
+                    }, 600);*/
                 }
             }
         }

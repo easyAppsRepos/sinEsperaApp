@@ -103,10 +103,26 @@
       $scope.$parent.setHeaderFab(false);
 
 
+    $scope.$on('$ionicView.beforeEnter', function(){
+
+      $scope.personas=$window.localStorage.getItem("personas");
+      $scope.notiCheck = $window.localStorage.getItem("alerta") == 'true' ? true : false;
+
+      console.log($window.localStorage.getItem("alerta"));
+      });
+
+
+
       $scope.cambiarPersonas = function(personas){
 
       $window.localStorage.setItem("personas", personas);
         console.log(personas)
+      }
+
+      $scope.cambiarAlerta = function(alerta){
+
+       $window.localStorage.setItem("alerta", alerta);
+        console.log(alerta)
       }
 
 
@@ -381,14 +397,17 @@ if(localStorage.getItem('sinEsperaToken')==null){
 
 
       $scope.verificarNotis = function(tns){ 
-console.log('en verificarNotis')
+console.log('en verificarNotis');
         var alerta =1;
-       
+       var alerta2=$window.localStorage.getItem("alerta");
+ var personas = $window.localStorage.getItem("personas");
 
-        if(alerta == 1){
-      var personas = $window.localStorage.getItem("personas");
+  console.log(alerta2);
+ console.log(personas);
+        if(true){
+     
 
-          console.log(personas);
+        
         for (var i = 0; i < tns.length; i++) {
 
             if(tns[i].remaining.persons<personas){
@@ -454,6 +473,8 @@ console.log(personas);
           else{
 
                   console.log(response);
+                  $scope.verificarNotis(response);
+
                     $window.localStorage.setItem("backupTurnos", JSON.stringify(response));
 
               $scope.noTurnos=false;
@@ -466,7 +487,7 @@ console.log(personas);
             var n = d.getTime();
 
               $window.localStorage.setItem("ultimoUpdate", n);
-            $scope.verificarNotis($scope.turnos);
+            
 
           }
   });
@@ -605,9 +626,9 @@ console.log(personas);
       $scope.modal.hide();
     };
     //Cleanup the modal when we're done with it!
-    $scope.$on('$destroy', function() {
-      $scope.modal.remove();
-    });
+   // $scope.$on('$destroy', function() {
+   //   $scope.modal.remove();
+  //  });
     // Execute action on hide modal
     $scope.$on('modal.hidden', function() {
       // Execute action

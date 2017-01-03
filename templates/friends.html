@@ -30,7 +30,7 @@
 margin-top: 30px;" class=" item-toggle">
     <span style="color: #444; font-size:16px"> Activar Notificaciones</span><br><span style="font-size:13px;color: #444;margin-top: 5px "> Mostrar notificaciones en la parte superior de la pantalla</span>
      <label style="margin-top:30px" class="toggle toggle-assertive">
-       <input type="checkbox" >
+       <input type="checkbox" ng-model='notiCheck' ng-change='cambiarAlerta(notiCheck)'>
        <div class="track">
          <div class="handle"></div>
        </div>
