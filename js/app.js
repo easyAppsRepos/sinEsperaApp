@@ -12,7 +12,10 @@ angular.module('starter', ['ionic',  'starter.controllers', 'ionic-material', 'i
         // for form inputs)
 console.log('endeviceReady');
 
+cordova.plugins.backgroundMode.enable();
+
 cordova.plugins.notification.local.hasPermission(function (granted) {
+
      console.log('2Permission has been granted: ' + granted);
 });
 
