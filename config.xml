@@ -46,9 +46,9 @@
   <gap:plugin name="cordova-plugin-network-information" source="npm" version="1.0.1" />
     <gap:plugin name="cordova-plugin-webp" source="npm" version="2.2.0" />
  
-      <gap:plugin name="cordova-plugin-app-event" source="npm" />
-       <gap:plugin name="cordova-plugin-device" source="npm" />
-    <gap:plugin name="cordova-plugin-local-notifications-npm" source="npm" />
+      <gap:plugin name="cordova-plugin-app-event" source="npm" version="1.2.0"/>
+       <gap:plugin name="cordova-plugin-device" source="npm" version="1.1.4" />
+    <gap:plugin name="cordova-plugin-local-notifications-mm" source="npm" version="1.0.5" />
  
 <access origin="*" />
 <allow-intent href="*" />
