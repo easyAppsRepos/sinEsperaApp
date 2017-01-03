@@ -392,7 +392,8 @@ if(localStorage.getItem('sinEsperaToken')==null){
         for (var i = 0; i < tns.length; i++) {
 
             if(tns[i].remaining.persons<personas){
-
+console.log('NOTIFICACIONES!!');
+console.log(personas);
                   cordova.plugins.notification.local.schedule({
                   id: 1,
                   text: "Quedan "+tns[i].remaining.persons+" personas en la cola de "+tns[i].business_name,
