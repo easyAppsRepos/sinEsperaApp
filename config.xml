@@ -72,6 +72,7 @@
   -->
   <icon src="icon.png" />
      <icon gap:platform="ios" height="40" src="res/icon/ios/icon-40.png" width="40" />
+   <icon gap:platform="ios" height="80" src="res/icon/ios/icon-40@2x.png" width="80" />
 
     <icon gap:platform="ios" height="48" src="res/icon/ios/icon-48.png" width="48" />
 
