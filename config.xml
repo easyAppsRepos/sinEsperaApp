@@ -62,19 +62,23 @@
  <platform name="ios">
   <hook type="before_build" src="hooks/ios_ats.sh" />
 </platform>
- 
-    <icon gap:platform="ios" height="40" src="res/icon/ios/icon-40.jpg" width="40" />
-    <icon gap:platform="ios" height="80" src="res/icon/ios/icon-40@2x.jpg" width="80" />
-    <icon gap:platform="ios" height="50" src="res/icon/ios/icon-50.jpg" width="50" />
-    <icon gap:platform="ios" height="100" src="res/icon/ios/icon-50@2x.jpg" width="100" />
-    <icon gap:platform="ios" height="60" src="res/icon/ios/icon-60.jpg" width="60" />
-    <icon gap:platform="ios" height="120" src="res/icon/ios/icon-60@2x.jpg" width="120" />
-    <icon gap:platform="ios" height="180" src="res/icon/ios/icon-60@3x.jpg" width="180" />
-    <icon gap:platform="ios" height="72" src="res/icon/ios/icon-72.jpg" width="72" />
-    <icon gap:platform="ios" height="144" src="res/icon/ios/icon-72@2x.jpg" width="144" />
-    <icon gap:platform="ios" height="76" src="res/icon/ios/icon-76.jpg" width="76" />
-    <icon gap:platform="ios" height="152" src="res/icon/ios/icon-76@2x.jpg" width="152" />
   -->
+  <icon src="icon.png" />
+    <icon gap:platform="ios" height="48" src="res/icon/ios/icon-40.png" width="48" />
+    <icon gap:platform="ios" height="57" src="res/icon/ios/icon-50.png" width="57" />
+    <icon gap:platform="ios" height="72" src="res/icon/ios/icon-72.png" width="72" />
+    <icon gap:platform="ios" height="114" src="res/icon/ios/icon-72@2x.png" width="114" />
+     <icon gap:platform="ios" height="144" src="res/icon/ios/icon-144.png" width="144" />
+  <splash src="splash.png" />
+ <splash src="res/splash/ios/splash200x320.png" platform="ios" width="200" height="320" />
+
+  <splash src="res/splash/ios/splash320x480.png" platform="ios" width="320" height="480" />
+
+   <splash src="res/splash/ios/splash480x800.png" platform="ios" width="480" height="800" />
+    <splash src="res/splash/ios/splash720x1280.png" platform="ios" width="720" height="1280" />
+     <splash src="res/splash/ios/splash960x1600.png" platform="ios" width="960" height="1600" />
+      <splash src="res/splash/ios/splash1280x1920.png" platform="ios" width="1280" height="1920" />
+
 
 
 
