@@ -41,6 +41,10 @@
     margin-top: 20px;
 ">
 
+<div ng-click='quitarTurno({{turnos.indexOf(t)}})' style="float:right; height:35px; width:35px; text-align:center; font-size:16px; color:lightcoral"><i class='ion-close-circled '></i></div>
+
+
+
              <div style="
     text-align: center;
     width: 85px;
@@ -48,6 +52,10 @@
     background-color: #666;
     vertical-align: middle;
 ">
+
+
+
+
                 <img src="{{t.business_logo}}" style="
     height: 65px;
     margin-top: 7px;
@@ -66,6 +74,7 @@
 vertical-align: middle;
     font-size: 17px;
 ">
+
                <div style="padding: 5px;"> <i style="color:#1e88e5" class="icon ion-home"></i><a style="color: #444;margin-left: 10px; display: inline-block" class="ng-binding">{{t.business_name}}</a>
                </div>
                <div  style="padding: 5px;">  <i style="color:#1e88e5" class="icon ion-ios-pricetags"></i><a style="color: #444;margin-left: 10px;display: inline-block" class="ng-binding">DFF</a>
@@ -90,8 +99,13 @@ vertical-align: middle;
 
 
                 <div ng-show='path == false' class="list animate-fade-slide-in-right">
+<div style="margin-top:10px; text-align:center">
+               <button ng-click='limpiarHistorial()' class="button button-small button-assertive">
+<i class='ion-android-delete'></i> Limpiar historial
+</button>
+</div>
 
-                        <div ng-repeat="t in historialT" class="turnosClass" style="
+                        <div ng-repeat="t in historialT | orderBy: '-date' track by $index" class="turnosClass" style="
                         width: 90%;
                         margin-left: 5%;
                         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

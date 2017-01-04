@@ -297,7 +297,7 @@
   })
 
 
-  .controller('ProfileCtrl', function($scope, $stateParams, $interval, $timeout, $window, ionicMaterialMotion, ionicMaterialInk, apiC) {
+  .controller('ProfileCtrl', function($scope, $stateParams, $state, $interval, $timeout, $window, ionicMaterialMotion, ionicMaterialInk, apiC) {
       // Set Header
   //    $scope.$parent.noHeader();
     //  $scope.$parent.hideNavBar();
@@ -390,7 +390,7 @@ if(localStorage.getItem('sinEsperaToken')==null){
                   }
                   
               }
-              for (var v = 0; k < turnosNotis.length; v++) {
+              for (var v = 0; v < turnosNotis.length; v++) {
 
                 if(turnos[i].business == turnosNotis[v].nombre && turnos[i].turn == turnosNotis[v].turno){
 
@@ -506,6 +506,68 @@ if(localStorage.getItem('sinEsperaToken')==null){
       }
 
       };
+
+      $scope.limpiarHistorial=function(){
+var hito = [];
+         $window.localStorage.setItem("turnosHistorial", JSON.stringify(hito));
+         $state.reload();
+      }
+
+
+$scope.quitarTurno = function(ind){
+
+  console.log(ind);
+
+var turnosNotis=JSON.parse($window.localStorage.getItem("controlNotis"));
+ var turnosGuardados=JSON.parse($window.localStorage.getItem("turnos"));
+
+ if(turnosNotis==null){turnosNotis=[]}
+   if(turnosGuardados==null){turnosGuardados=[]}
+
+ var turnosHistorialNew = $scope.turnos[ind] ;
+
+      for (var v = 0; v < turnosNotis.length; v++) {
+
+                if($scope.turnos[ind].business == turnosNotis[v].nombre && $scope.turnos[ind].turn == turnosNotis[v].turno){
+
+                    var indeTN=turnosNotis.indexOf(turnosNotis[v]);
+                    turnosNotis.splice(indeTN,1);
+                    $window.localStorage.setItem("controlNotis", JSON.stringify(turnosNotis));
+
+                }
+
+              }
+
+
+
+
+                      turnosGuardados.splice(ind,1);
+                      $window.localStorage.setItem("turnos", JSON.stringify(turnosGuardados));
+
+
+                      var turnosHistorial=JSON.parse($window.localStorage.getItem("turnosHistorial"));
+                      if(turnosHistorial == null){turnosHistorial=[]}
+                     
+
+
+                  //
+                          var currentDate = new Date()
+                          var day = currentDate.getDate()
+                          var month = currentDate.getMonth() + 1
+                          var year = currentDate.getFullYear()
+                          var ddd =  day + "/" + month + "/" + year;
+                          turnosHistorialNew.date=ddd;
+                  //
+                      console.log(turnosHistorialNew);
+                      turnosHistorial.push(turnosHistorialNew);
+                      $window.localStorage.setItem("turnosHistorial", JSON.stringify(turnosHistorial));
+
+
+
+
+                      $state.reload();
+}
+
 
   $scope.getTurnos= function(){
 
