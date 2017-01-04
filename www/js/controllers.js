@@ -414,6 +414,7 @@ console.log('en verificarNotis');
 
             if(tns[i].remaining.persons<personas){
 console.log('NOTIFICACIONES!!');
+console.log(tns[i]);
 console.log(personas);
                   cordova.plugins.notification.local.schedule({
                   id: 1,
