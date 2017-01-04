@@ -304,20 +304,6 @@
      // $scope.$parent.hideHeader();
      $scope.noTurnos=false;
 
-
-     // $scope.$parent.clearFabs();
-      //$scope.isExpanded = false;
-      //$scope.$parent.setExpanded(false);
-      //$scope.$parent.setHeaderFab(false);
-
-
-
-
-          $scope.$on('$ionicView.beforeEnter', function(){
-          $scope.getTurnos();
-      });
-
-        
  $scope.getTokenS = function(){    
 
   apiC.getToken().then(function(response){
@@ -333,12 +319,26 @@ if(localStorage.getItem('sinEsperaToken')==null){
 
   $scope.getTokenS();
 }
+     // $scope.$parent.clearFabs();
+      //$scope.isExpanded = false;
+      //$scope.$parent.setExpanded(false);
+      //$scope.$parent.setHeaderFab(false);
+
+
+
+
+          $scope.$on('$ionicView.beforeEnter', function(){
+          $scope.getTurnos();
+      });
+
+        
+
 
 
           $scope.turnos=[];
     
 
-  console.log(localStorage.getItem('sinEsperaToken'));
+  //console.log(localStorage.getItem('sinEsperaToken'));
 
   $scope.calcularTiempo = function(minutos){
 
@@ -484,7 +484,7 @@ if(localStorage.getItem('sinEsperaToken')==null){
             if($scope.actualizarNotis(tns[i].business, tns[i].turn, tns[i].remaining.persons)){
 
                   console.log('NOTIFICANDO!!');  
- /*                 cordova.plugins.notification.local.schedule({
+                 cordova.plugins.notification.local.schedule({
                   id: 1,
                   title: "Quedan "+tns[i].remaining.persons+" personas",
                   text: "Faltan "+tns[i].remaining.persons+" personas en tu cola de "+tns[i].business_name,
@@ -492,7 +492,7 @@ if(localStorage.getItem('sinEsperaToken')==null){
                   //icon:tns[i].business_logo,
                   //   smallIcon:tns[i].business_logo
                   // data: { secret:key }
-                  });*/
+                  });
 
             }
 
@@ -515,13 +515,13 @@ console.log(alerta);
   apiC.consultaTiempos().then(function(response){
 
      // console.log(JSON.parse($window.localStorage.getItem("turnos")));
-
+console.log(response);
       if(response==500 || response.error){
           console.log('no internet');
            $scope.turnos = JSON.parse($window.localStorage.getItem("backupTurnos"));
 
            var historialT=JSON.parse($window.localStorage.getItem("backupTurnos"));
-
+           if(historialT==null){historialT=[]}
         //   $scope.actualizarOff();
             var dd = new Date();
             var nn = dd.getTime();
