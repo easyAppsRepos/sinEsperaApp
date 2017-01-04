@@ -48,7 +48,11 @@
  
       <gap:plugin name="cordova-plugin-app-event" source="npm" version="1.2.0"/>
        <gap:plugin name="cordova-plugin-device" source="npm" version="1.1.4" />
-    <gap:plugin name="de.appplant.cordova.plugin.local-notification" source="npm" version="0.8.4" />
+<!--     <gap:plugin name="de.appplant.cordova.plugin.local-notification" source="npm" version="0.8.4" /> -->
+<plugin spec="https://github.com/notclive/cordova-plugin-local-notifications" source="git" />
+   
+
+
  <gap:plugin name="cordova-plugin-background-mode" source="npm" />
 <access origin="*" />
 <allow-intent href="*" />
