@@ -463,8 +463,8 @@ if(localStorage.getItem('sinEsperaToken')==null){
 
       $scope.verificarNotis = function(tns){ 
 
- var controlNotis=JSON.parse($window.localStorage.getItem("controlNotis"));
-      console.log(controlNotis);
+      // var controlNotis=JSON.parse($window.localStorage.getItem("controlNotis"));
+      //console.log(controlNotis);
 
        // console.log('en verificarNotis');
         //var alerta =1;
