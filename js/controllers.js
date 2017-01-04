@@ -419,8 +419,8 @@ console.log(personas);
                   id: 1,
                   title: "Quedan "+tns[i].remaining.persons+" personas",
                   text: "Faltan "+tns[i].remaining.persons+" personas en tu cola de "+tns[i].business_name,
-                   sound:"file://resources/audio/beep.mp3",
-                   icon:"icon.png"
+                   //sound:"file://resources/audio/beep.mp3",
+                   icon:"file://icon.png"
                   // data: { secret:key }
                   });
 
