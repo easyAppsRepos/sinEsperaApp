@@ -121,6 +121,7 @@ cordova.plugins.notification.local.registerPermission(function (granted) {
 
     .state('app.profile', {
         url: '/profile',
+        cache:false,
         views: {
             'menuContent': {
                 templateUrl: 'templates/profile.html',
