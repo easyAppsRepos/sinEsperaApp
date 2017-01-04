@@ -144,7 +144,7 @@
 
           var turnos=JSON.parse($window.localStorage.getItem("turnos"));
     
-     console.log(turnos);
+     //console.log(turnos);
 
 
   /*    for (var i = 0; i < turnos.length; i++) {
@@ -173,7 +173,7 @@
                       .then(function(response) {
               
                        
-                  console.log(response);
+          //        console.log(response);
                                //console.log(response.data.response.token);
 
                               return response.data.response;
@@ -351,8 +351,10 @@ if(localStorage.getItem('sinEsperaToken')==null){
 
   $scope.verificarOld= function(turnos){
 
-  console.log(turnos);
+  //console.log(turnos);
   var turnosGuardados=JSON.parse($window.localStorage.getItem("turnos"));
+  var turnosNotis=JSON.parse($window.localStorage.getItem("controlNotis"));
+   if(turnosNotis == null){turnosNotis=[]}
   var len = turnos.length;
   for (var i = 0; i < len; i++) {
 
@@ -388,6 +390,18 @@ if(localStorage.getItem('sinEsperaToken')==null){
                   }
                   
               }
+              for (var v = 0; k < turnosNotis.length; v++) {
+
+                if(turnos[i].business == turnosNotis[v].nombre && turnos[i].turn == turnosNotis[v].turno){
+
+                    var indeTN=turnosNotis.indexOf(turnosNotis[v]);
+                    turnosNotis.splice(indeTN,1);
+                    $window.localStorage.setItem("controlNotis", JSON.stringify(turnosNotis));
+
+                }
+
+              }
+
 
           }
   }
@@ -395,38 +409,94 @@ if(localStorage.getItem('sinEsperaToken')==null){
 
   };
 
+      $scope.actualizarNotis = function(idNegocio, numTurno, personasPendientes){ 
+
+      var controlNotis=JSON.parse($window.localStorage.getItem("controlNotis"));
+      console.log(controlNotis);
+
+      if(controlNotis == null ){controlNotis=[];}
+      var existe = false;
+      var notificar = false;
+      var indexItem=0;
+
+
+      for (var j = 0; j < controlNotis.length; j++) {
+
+        if(idNegocio == controlNotis[j].nombre && numTurno == controlNotis[j].turno){
+          existe = true;
+          indexItem=  controlNotis.indexOf(controlNotis[j]);
+        }
+
+      }
+
+      if(existe){
+
+
+            
+      
+      if( controlNotis[indexItem].personas > personasPendientes){
+      //notificar
+      notificar = true;
+      controlNotis[indexItem].personas = personasPendientes;
+
+
+      }
+      
+            
+      }
+
+      else{ 
+
+        var control = {nombre:idNegocio, turno:numTurno, personas:personasPendientes};
+        controlNotis.push(control);
+        notificar= true;
+
+      }
+
+      $window.localStorage.setItem("controlNotis", JSON.stringify(controlNotis));
+      return notificar;
+      //console.log(controlNotis);
+
+      //$window.localStorage.setItem("backupTurnos", JSON.stringify(response));
+      }
+
 
       $scope.verificarNotis = function(tns){ 
-console.log('en verificarNotis');
-        var alerta =1;
-       var alerta2=$window.localStorage.getItem("alerta");
- var personas = $window.localStorage.getItem("personas");
 
- if(personas == null) { personas = 5;} 
+ var controlNotis=JSON.parse($window.localStorage.getItem("controlNotis"));
+      console.log(controlNotis);
 
-  console.log(alerta2);
- console.log(personas);
-        if(true){
-     
-
+       // console.log('en verificarNotis');
+        //var alerta =1;
         
+      //  var alerta2=$window.localStorage.getItem("alerta");
+        var personas = $window.localStorage.getItem("personas");
+
+       if(personas == null) { personas = 3;} 
+
+        if(true){
+           
         for (var i = 0; i < tns.length; i++) {
 
-            if(tns[i].remaining.persons<personas){
-console.log('NOTIFICACIONES!!');
-console.log(tns[i]);
-console.log(personas);
-                  cordova.plugins.notification.local.schedule({
+
+            if(tns[i].remaining.persons<=personas){
+
+            if($scope.actualizarNotis(tns[i].business, tns[i].turn, tns[i].remaining.persons)){
+
+                  console.log('NOTIFICANDO!!');  
+ /*                 cordova.plugins.notification.local.schedule({
                   id: 1,
                   title: "Quedan "+tns[i].remaining.persons+" personas",
                   text: "Faltan "+tns[i].remaining.persons+" personas en tu cola de "+tns[i].business_name,
-                   //sound:"file://resources/audio/beep.mp3",
-                   icon:tns[i].business_logo,
-                      smallIcon:tns[i].business_logo
+                  //sound:"file://resources/audio/beep.mp3",
+                  //icon:tns[i].business_logo,
+                  //   smallIcon:tns[i].business_logo
                   // data: { secret:key }
-                  });
+                  });*/
 
             }
+
+           }
 
         }
 
@@ -439,9 +509,12 @@ console.log(personas);
 
   $scope.getTurnos= function(){
 
+ var alerta = $window.localStorage.getItem("alerta") == 'true' ? true : false;
+console.log(alerta);
+
   apiC.consultaTiempos().then(function(response){
 
-      console.log(JSON.parse($window.localStorage.getItem("turnos")));
+     // console.log(JSON.parse($window.localStorage.getItem("turnos")));
 
       if(response==500 || response.error){
           console.log('no internet');
@@ -453,14 +526,14 @@ console.log(personas);
             var dd = new Date();
             var nn = dd.getTime();
        var ultimoUpdate = (((nn-$window.localStorage.getItem("ultimoUpdate")) / 1000)  / 60).toFixed(0);
-        console.log(ultimoUpdate);
+       // console.log(ultimoUpdate);
 
 
        for(var i = 0; i < historialT.length; i++){
         var tiempoPromedio =(historialT[i].remaining.time/historialT[i].remaining.persons).toFixed(0);
-        console.log(tiempoPromedio);
+       // console.log(tiempoPromedio);
             if(ultimoUpdate>tiempoPromedio){
- console.log('enif');
+// console.log('enif');
               historialT[i].remaining.time= historialT[i].remaining.time-tiempoPromedio;
               historialT[i].remaining.persons=historialT[i].remaining.persons-1;
              var sd = new Date();
@@ -472,14 +545,14 @@ console.log(personas);
 
            
        }
-
+       if(alerta){$scope.verificarNotis(historialT);}
         $window.localStorage.setItem("backupTurnos", JSON.stringify(historialT));
 
       }
           else{
 
-                  console.log(response);
-                  $scope.verificarNotis(response);
+                 // console.log(response);
+                  if(alerta){$scope.verificarNotis(response);}
 
                     $window.localStorage.setItem("backupTurnos", JSON.stringify(response));
 
@@ -487,7 +560,7 @@ console.log(personas);
                         $scope.turnos=response;
                         $scope.verificarOld($scope.turnos);
                         $scope.historialT = JSON.parse($window.localStorage.getItem("turnosHistorial"));
-            console.log(    $scope.historialT);
+      //      console.log(    $scope.historialT);
 
             var d = new Date();
             var n = d.getTime();
