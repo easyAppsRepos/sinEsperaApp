@@ -509,7 +509,7 @@ if(localStorage.getItem('sinEsperaToken')==null){
                   console.log('NOTIFICANDO!!');  
 
 
-       /*          cordova.plugins.notification.local.schedule({
+                 cordova.plugins.notification.local.schedule({
                   id: 1,
                   title: "Quedan "+tns[i].remaining.persons+" personas",
                   text: "Faltan "+tns[i].remaining.persons+" personas en tu cola de "+tns[i].business_name,
@@ -517,7 +517,7 @@ if(localStorage.getItem('sinEsperaToken')==null){
                   //icon:tns[i].business_logo,
                   //   smallIcon:tns[i].business_logo
                   // data: { secret:key }
-                  });*/
+                  });
 
             }
 
