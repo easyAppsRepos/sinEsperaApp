@@ -95,7 +95,7 @@
       ionicMaterialInk.displayEffect();
   })
 
-  .controller('FriendsCtrl', function($scope, $stateParams, $window, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+  .controller('FriendsCtrl', function($scope, $stateParams, $window, $ionicPopup, $timeout, ionicMaterialInk, ionicMaterialMotion) {
  //    $scope.$parent.showHeader();
       $scope.$parent.clearFabs();
       $scope.isExpanded = true;
@@ -111,6 +111,29 @@
       console.log($window.localStorage.getItem("alerta"));
       });
 
+
+      $scope.limpiarHistorial=function(){
+var hito = [];
+         $window.localStorage.setItem("turnosHistorial", JSON.stringify(hito));
+
+            var customTemplate =
+        '<div style="text-align:center"><img style="margin-top:10px" src="img/posi.png"> <p style="margin-top:25px">El historial ha sido borrado</p> </div>';
+
+      $ionicPopup.show({
+        template: customTemplate,
+        title: '',
+        subTitle: '',
+        buttons: [{
+          text: 'OK',
+          type: 'button-balanced',
+          onTap: function(e) {
+          }
+        }]
+      });
+
+
+         
+      }
 
 
       $scope.cambiarPersonas = function(personas){
@@ -507,11 +530,7 @@ if(localStorage.getItem('sinEsperaToken')==null){
 
       };
 
-      $scope.limpiarHistorial=function(){
-var hito = [];
-         $window.localStorage.setItem("turnosHistorial", JSON.stringify(hito));
-         $state.reload();
-      }
+
 
 
 $scope.quitarTurno = function(ind){
