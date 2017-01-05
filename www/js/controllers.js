@@ -507,7 +507,9 @@ if(localStorage.getItem('sinEsperaToken')==null){
             if($scope.actualizarNotis(tns[i].business, tns[i].turn, tns[i].remaining.persons)){
 
                   console.log('NOTIFICANDO!!');  
-                 cordova.plugins.notification.local.schedule({
+
+
+       /*          cordova.plugins.notification.local.schedule({
                   id: 1,
                   title: "Quedan "+tns[i].remaining.persons+" personas",
                   text: "Faltan "+tns[i].remaining.persons+" personas en tu cola de "+tns[i].business_name,
@@ -515,7 +517,7 @@ if(localStorage.getItem('sinEsperaToken')==null){
                   //icon:tns[i].business_logo,
                   //   smallIcon:tns[i].business_logo
                   // data: { secret:key }
-                  });
+                  });*/
 
             }
 
@@ -540,10 +542,26 @@ $scope.quitarTurno = function(ind){
 var turnosNotis=JSON.parse($window.localStorage.getItem("controlNotis"));
  var turnosGuardados=JSON.parse($window.localStorage.getItem("turnos"));
 
+var turnosGuardados2=JSON.parse($window.localStorage.getItem("backupTurnos"));
  if(turnosNotis==null){turnosNotis=[]}
-   if(turnosGuardados==null){turnosGuardados=[]}
+   if(turnosGuardados2==null){turnosGuardados2=[]}
 
  var turnosHistorialNew = $scope.turnos[ind] ;
+
+
+      for (var k = 0; k < turnosGuardados.length; k++) {
+
+                  if($scope.turnos[ind].business == turnosGuardados[k].business && $scope.turnos[ind].turn == turnosGuardados[k].turn){
+                    
+                      var indexEliminar= turnosGuardados.indexOf(turnosGuardados[k]);
+                      turnosGuardados.splice(indexEliminar,1);
+                      $window.localStorage.setItem("turnos", JSON.stringify(turnosGuardados));
+
+
+                  }
+                  
+              }
+
 
       for (var v = 0; v < turnosNotis.length; v++) {
 
@@ -560,9 +578,9 @@ var turnosNotis=JSON.parse($window.localStorage.getItem("controlNotis"));
 
 
 
-                      turnosGuardados.splice(ind,1);
-                      $window.localStorage.setItem("turnos", JSON.stringify(turnosGuardados));
-
+                      turnosGuardados2.splice(ind,1);
+                      //$window.localStorage.setItem("turnos", JSON.stringify(turnosGuardados));
+                      $window.localStorage.setItem("backupTurnos", JSON.stringify(turnosGuardados2));
 
                       var turnosHistorial=JSON.parse($window.localStorage.getItem("turnosHistorial"));
                       if(turnosHistorial == null){turnosHistorial=[]}
@@ -598,11 +616,14 @@ console.log(alerta);
      // console.log(JSON.parse($window.localStorage.getItem("turnos")));
 console.log(response);
       if(response==500 || response.error){
+
+        console.log( JSON.parse($window.localStorage.getItem("turnosHistorial")));
+       // console.log( JSON.parse($window.localStorage.getItem("backupTurnos")));
           console.log('no internet');
            $scope.turnos = JSON.parse($window.localStorage.getItem("backupTurnos"));
 
-           var historialT=JSON.parse($window.localStorage.getItem("backupTurnos"));
-           if(historialT==null){historialT=[]}
+           $scope.historialT=JSON.parse($window.localStorage.getItem("turnosHistorial"));
+           if($scope.historialT==null){historialT=[]}
         //   $scope.actualizarOff();
             var dd = new Date();
             var nn = dd.getTime();
@@ -610,13 +631,13 @@ console.log(response);
        // console.log(ultimoUpdate);
 
 
-       for(var i = 0; i < historialT.length; i++){
-        var tiempoPromedio =(historialT[i].remaining.time/historialT[i].remaining.persons).toFixed(0);
+       for(var i = 0; i < $scope.turnos.length; i++){
+        var tiempoPromedio =($scope.turnos[i].remaining.time/$scope.turnos[i].remaining.persons).toFixed(0);
        // console.log(tiempoPromedio);
             if(ultimoUpdate>tiempoPromedio){
 // console.log('enif');
-              historialT[i].remaining.time= historialT[i].remaining.time-tiempoPromedio;
-              historialT[i].remaining.persons=historialT[i].remaining.persons-1;
+              $scope.turnos[i].remaining.time= $scope.turnos[i].remaining.time-tiempoPromedio;
+              $scope.turnos[i].remaining.persons=$scope.turnos[i].remaining.persons-1;
              var sd = new Date();
              var sn = sd.getTime();
              $window.localStorage.setItem("ultimoUpdate", sn);
@@ -626,8 +647,8 @@ console.log(response);
 
            
        }
-       if(alerta){$scope.verificarNotis(historialT);}
-        $window.localStorage.setItem("backupTurnos", JSON.stringify(historialT));
+       if(alerta){$scope.verificarNotis($scope.turnos)}
+        $window.localStorage.setItem("backupTurnos", JSON.stringify($scope.turnos));
 
       }
           else{
