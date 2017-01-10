@@ -320,13 +320,13 @@ var hito = [];
   })
 
 
-  .controller('ProfileCtrl', function($scope, $stateParams, $state, $interval, $timeout, $window, ionicMaterialMotion, ionicMaterialInk, apiC) {
+  .controller('ProfileCtrl', function($scope, $stateParams, $state, $ionicPopup, $interval, $timeout, $window, ionicMaterialMotion, ionicMaterialInk, apiC) {
       // Set Header
   //    $scope.$parent.noHeader();
     //  $scope.$parent.hideNavBar();
      // $scope.$parent.hideHeader();
      $scope.noTurnos=false;
-
+$scope.nointernet=false;
  $scope.getTokenS = function(){    
 
   apiC.getToken().then(function(response){
@@ -511,8 +511,8 @@ if(localStorage.getItem('sinEsperaToken')==null){
 
                  cordova.plugins.notification.local.schedule({
                   id: 1,
-                  title: "Quedan "+tns[i].remaining.persons+" personas",
-                  text: "Faltan "+tns[i].remaining.persons+" personas en tu cola de "+tns[i].business_name,
+                  title: "Tienes "+tns[i].remaining.persons+" personas",
+                  text: "Por delante en "+tns[i].business_name,
                   //sound:"file://resources/audio/beep.mp3",
                   //icon:tns[i].business_logo,
                   //   smallIcon:tns[i].business_logo
@@ -536,6 +536,21 @@ if(localStorage.getItem('sinEsperaToken')==null){
 
 
 $scope.quitarTurno = function(ind){
+
+
+   var customTemplate =
+        '<div style="text-align:center"><img style="margin-top:10px" src="img/alert.png"> <p style="margin-top:25px">¿Estas seguro que deseas elimiar este turno?</p> </div>';
+
+      $ionicPopup.show({
+        template: customTemplate,
+        title: '',
+        subTitle: '',
+        buttons: [
+        {
+          text: 'Eliminar',
+          type: 'botn button-assertive',
+          onTap: function(e) {
+//borrar start
 
   console.log(ind);
 
@@ -603,6 +618,19 @@ var turnosGuardados2=JSON.parse($window.localStorage.getItem("backupTurnos"));
 
 
                       $state.reload();
+//borrar ends
+          }
+        },
+        {
+          text: 'Cerrar',
+          type: 'botn button-light',
+          onTap: function(e) {
+
+          }
+        }]
+      });
+
+
 }
 
 
@@ -616,6 +644,8 @@ console.log(alerta);
      // console.log(JSON.parse($window.localStorage.getItem("turnos")));
 console.log(response);
       if(response==500 || response.error){
+
+        $scope.nointernet=true;
 
         console.log( JSON.parse($window.localStorage.getItem("turnosHistorial")));
        // console.log( JSON.parse($window.localStorage.getItem("backupTurnos")));
@@ -652,7 +682,7 @@ console.log(response);
 
       }
           else{
-
+                $scope.nointernet=false;
                  // console.log(response);
                   if(alerta){$scope.verificarNotis(response);}
 

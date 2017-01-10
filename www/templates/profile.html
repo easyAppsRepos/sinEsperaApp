@@ -1,15 +1,42 @@
 <ion-view view-title="Profile">
 
 <style type="text/css">
+    .botn{
+
+   
     
+    width: 80% !important;
+    margin-left: 10% !important;
+    margin-top: 10px;
+}
+
+.popup-buttons{
+    display: block !important;
+}
 
 
 </style>
     <ion-content ng-class="{expanded:$scope.isExpanded}">
+
+
+          
+                <button style='right: -10px;
+    font-size: 24px;
+    position: absolute;
+    font-weight: 300;
+    color: darkgray;
+    width: 30px;' class="button button-icon button-clear ion-android-more-vertical" menu-toggle="right">
+                </button>
+
+        
+  
+
+
         <div  style='    text-align: center;
     padding: 30px;'  class=" " >
 
-        <img src='img/logo.png'>
+        <img  style='width: 60%;
+max-width: 300px;' src='img/logo1.png'>
  <!--            <div class="content">
                 <div class="avatar" style="background-image: url('img/daenerys.jpg');"></div>
                 <h3><a class="light">Daenerys Targaryen</a></h3>
@@ -31,6 +58,11 @@
         <div ng-show='path == true' class="list animate-fade-slide-in-right">
 
 
+<div style='    width: 90%;
+    margin-left: 5%;
+    margin-top: 10px;
+    color: rgb(68, 68, 68);
+    text-align: justify;' ng-show='nointernet == true'> Ha ocurrido un error, <b>el tiempo mostrado es un estimado</b> y puede no ser real. Por favor verifica tu conexión a internet</div>
 <!-- <div ng-show="noTurnos"  style='text-align: center;margin-top: 20px;color: #444;font-size: 16px' >No hay turnos activos actualmente</div> -->
 
  <div ng-repeat="t in turnos" class="turnosClass" style="
@@ -41,7 +73,7 @@
     margin-top: 20px;
 ">
 
-<div ng-click='quitarTurno({{turnos.indexOf(t)}})' style="float:right; height:35px; width:35px; text-align:center; font-size:16px; color:lightcoral"><i class='ion-close-circled '></i></div>
+<div ng-click='quitarTurno({{turnos.indexOf(t)}})' style="float:right; height:35px; width:25px; text-align:center; font-size:16px; color:lightcoral"><i class='ion-close-circled '></i></div>
 
 
 
