@@ -38,8 +38,7 @@
 <preference name="StatusBarBackgroundColor" value="#000000" />
 
 
-      <preference name="SplashScreenDelay" value="3000" />
-<preference name="FadeSplashScreenDuration" value="750"/>
+
 
 
 <gap:plugin name="cordova-plugin-statusbar" version="2.2.1" source="npm" />
@@ -51,14 +50,14 @@
        <gap:plugin name="cordova-plugin-device" source="npm" version="1.1.4" />
 <!--     <gap:plugin name="de.appplant.cordova.plugin.local-notification" source="npm" version="0.8.4" /> 
 
-
+<plugin spec="https://github.com/apache/cordova-plugin-splashscreen.git" source="git" />
   <plugin spec="https://github.com/katzer/cordova-plugin-local-notifications" source="git" /> bad
 
 <plugin spec="https://github.com/notclive/cordova-plugin-local-notifications" source="git" />
 -->
 
 
-<plugin spec="https://github.com/apache/cordova-plugin-splashscreen.git" source="git" />
+
 <plugin spec="https://github.com/katzer/cordova-plugin-local-notifications#ios10" source="git" />
 
  <gap:plugin name="cordova-plugin-background-mode" source="npm" />
