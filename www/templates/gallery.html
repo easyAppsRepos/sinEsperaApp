@@ -133,11 +133,11 @@
     margin-left: 5%;
 ">
 
-<div ng-show='carg' style="text-align: center;
+<div class='ng-hide' ng-show='carg' style="text-align: center;
     margin-top: 40px;"><ion-spinner></ion-spinner></div>
 <div style='text-align: center;
     font-size: 16px;
-    color: #444;' ng-show='noResult'>No se han encontrado resultados</div>
+    color: #444;' class='ng-hide'  ng-show='noResult'>No se han encontrado resultados</div>
 
 <div class='empresa'  ng-click='openEmpresa(item.name, item.logotype, item.id)' ng-repeat='item in items' style="">
             <img src="{{item.logotype}}" style="

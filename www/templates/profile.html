@@ -55,17 +55,17 @@ max-width: 300px;' src='img/logo1.png'>
 
         </div>
      
-        <div ng-show='path == true' class="list animate-fade-slide-in-right">
+        <div ng-show='path == true' class="list animate-fade-slide-in-right ng-hide">
 
-<!-- 
-<div style='    width: 90%;
+
+<div  class="ng-hide" style='    width: 90%;
     margin-left: 5%;
     margin-top: 10px;
     color: rgb(68, 68, 68);
     text-align: justify;' ng-show='nointernet == true'> Ha ocurrido un error, <b>el tiempo mostrado es un estimado</b> y puede no ser real. Por favor verifica tu conexión a internet</div>
 
-    
-<div ng-show="noTurnos"  style='text-align: center;margin-top: 20px;color: #444;font-size: 16px' >No hay turnos activos actualmente</div> -->
+
+<!-- <div ng-show="noTurnos"  style='text-align: center;margin-top: 20px;color: #444;font-size: 16px' >No hay turnos activos actualmente</div> -->
 
  <div ng-repeat="t in turnos" class="turnosClass" style="
     width: 90%;
@@ -132,7 +132,7 @@ vertical-align: middle;
 
 
 
-                <div ng-show='path == false' class="list animate-fade-slide-in-right">
+                <div ng-show='path == false' class="list animate-fade-slide-in-right ng-hide">
 <!-- <div style="margin-top:10px; text-align:center">
                <button ng-click='limpiarHistorial()' class="button button-small button-assertive">
 <i class='ion-android-delete'></i> Limpiar historial

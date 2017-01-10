@@ -645,15 +645,16 @@ console.log(alerta);
 console.log(response);
       if(response==500 || response.error){
 
-        $scope.nointernet=true;
-
-        console.log( JSON.parse($window.localStorage.getItem("turnosHistorial")));
+        
+         
+    //    console.log( JSON.parse($window.localStorage.getItem("turnosHistorial")));
        // console.log( JSON.parse($window.localStorage.getItem("backupTurnos")));
-          console.log('no internet');
+       //  console.log('no internet');
            $scope.turnos = JSON.parse($window.localStorage.getItem("backupTurnos"));
 
            $scope.historialT=JSON.parse($window.localStorage.getItem("turnosHistorial"));
            if($scope.historialT==null){historialT=[]}
+            else{ $scope.nointernet=true;}
         //   $scope.actualizarOff();
             var dd = new Date();
             var nn = dd.getTime();
