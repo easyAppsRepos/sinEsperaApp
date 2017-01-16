@@ -75,7 +75,7 @@ max-width: 300px;' src='img/logo1.png'>
     margin-top: 20px;
 ">
 
-<div ng-click='quitarTurno({{turnos.indexOf(t)}})' style="float:right; height:35px; width:25px; text-align:center; font-size:16px; color:lightcoral"><i class='ion-close-circled '></i></div>
+<div ng-click='quitarTurno({{turnos.indexOf(t)}})' style="float:right; height:35px; width:25px; text-align:center; font-size:23px; color:lightcoral"><i class='ion-close-circled '></i></div>
 
 
 
@@ -111,7 +111,7 @@ vertical-align: middle;
 
                <div style="padding: 5px;"> <i style="color:#1e88e5" class="icon ion-home"></i><a style="color: #444;margin-left: 10px; display: inline-block" class="ng-binding">{{t.business_name}}</a>
                </div>
-               <div  style="padding: 5px;">  <i style="color:#1e88e5" class="icon ion-ios-pricetags"></i><a style="color: #444;margin-left: 10px;display: inline-block" class="ng-binding">DFF</a>
+               <div  style="padding: 5px;">  <i style="color:#1e88e5" class="icon ion-ios-pricetags"></i><a style="color: #444;margin-left: 10px;display: inline-block" class="ng-binding">{{t.turn}}</a>
                </div>
                 <div  style="padding: 5px;">
                 <i style="color:#1e88e5" class="icon ion-ios-clock-outline"></i><a style="margin-left: 10px;display: inline-block;color: #444;" class="ng-binding">{{calcularTiempo(t.remaining.time)}}</a>
@@ -139,7 +139,7 @@ vertical-align: middle;
 </button>
 </div> -->
 
-                        <div ng-repeat="t in historialT | orderBy: '-date' track by $index" class="turnosClass" style="
+                        <div ng-repeat="t in historialT.slice().reverse() track by $index" class="turnosClass" style="
                         width: 90%;
                         margin-left: 5%;
                         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

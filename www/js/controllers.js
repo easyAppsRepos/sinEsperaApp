@@ -684,7 +684,7 @@ console.log(response);
       }
           else{
                 $scope.nointernet=false;
-                 // console.log(response);
+                  console.log(response);
                   if(alerta){$scope.verificarNotis(response);}
 
                     $window.localStorage.setItem("backupTurnos", JSON.stringify(response));
